@@ -49,17 +49,16 @@ export default class Bingo {
     // 🔥🔥🔥 TODO 2
     // loop through all the cards in the array and create a new instance of a Card()
 
-
     // for()
-    for(let i = 0; i < this.cards.length; i++) {
-      let card = new Card(this.cards[i]);
-      card.render(i);
-    }
-
     // create a new card object
     // let card = new Card(this.cards[i]);
     // render the card
     // card.render();
+
+    for(let i = 0; i < this.cards.length; i++) {
+      let card = new Card(this.cards[i]);
+      card.render(i);
+    }
   }
 
   static checkWinner() {
@@ -73,6 +72,9 @@ export default class Bingo {
     // show the animated gif to the winner
     // document.querySelector(".bingo__overlay").style.display = "block";
     // }
+    if(document.querySelectorAll(".bingo__card--done").length === 5) {
+      document.querySelector(".bingo__overlay").style.display = "block";
+    }
   }
 
   static save() {
