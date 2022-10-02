@@ -41,6 +41,9 @@ export default class Card {
       this.markDone(e.target);
       Bingo.checkWinner();
       Bingo.save();
+      if(document.querySelectorAll(".bingo__card--done").length > 5) {
+        e.target.classList.remove("bingo__card--done");
+      }
     });
   }
 }
