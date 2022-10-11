@@ -13,10 +13,12 @@ export default class Weather {
             // get the data from local storage
             const weatherData = JSON.parse(localStorage.getItem("weather"));
             this.displayWeather(weatherData);
-            console.log("CACHE");
+            // console.log("CACHE");
         } else {
             this.getLocation();
         }
+
+        this.getTeam();
 
         
     }
@@ -65,5 +67,30 @@ export default class Weather {
         img.src = icon;
         // add the image to the DOM
         document.querySelector(".weather__icon").appendChild(img);
+    }
+
+    getTeam(){
+        fetch("https://api-football-beta.p.rapidapi.com/teams?league=39&season=2019", {
+	    "method": "GET",
+	    "headers": {
+        "X-RapidAPI-Key": "c3231c4facmshf9299219d57620ep1bf3bbjsn9e77f8e0c2e2",
+        "X-RapidAPI-Host": "api-football-beta.p.rapidapi.com"
+	    }
+        
+        }).then(res => {
+            return res.json();
+        }).then(response => {
+            const get = response;
+            console.log(get);
+            let teams = get.response;
+            let randomTeam = teams[Math.floor(Math.random()*teams.length)];
+            console.log(randomTeam); 
+            // get team name
+            let teamName = randomTeam.team.name;
+            console.log(teamName);
+
+        }).catch(err => {
+            console.error(err);
+        });
     }
 }
