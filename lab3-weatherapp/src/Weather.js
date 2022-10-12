@@ -55,10 +55,10 @@ export default class Weather {
 
     displayWeather(data) {
         const temp = data.current.temp_c;
-        document.querySelector(".weather__temp").innerText = temp + "°C";
+        document.querySelector("#weather__temp").innerText = temp + "°C";
 
         const weather = data.current.condition.text;
-        document.querySelector(".weather__summary").innerText = weather;
+        document.querySelector("#weather__summary").innerText = weather;
 
         const icon = data.current.condition.icon;
         // create an image element
@@ -66,7 +66,7 @@ export default class Weather {
         // set the src attribute of the image element
         img.src = icon;
         // add the image to the DOM
-        document.querySelector(".weather__icon").appendChild(img);
+        document.querySelector("#weather__icon").appendChild(img);
     }
 
     getTeam(){
@@ -85,12 +85,34 @@ export default class Weather {
             let teams = get.response;
             let randomTeam = teams[Math.floor(Math.random()*teams.length)];
             console.log(randomTeam); 
+
             // get team name
             let teamName = randomTeam.team.name;
             console.log(teamName);
+            this.displayTeamName(teamName);
+
+            // get team logo
+            let teamLogo = randomTeam.team.logo;
+            console.log(teamLogo);
+            this.displayTeamLogo(teamLogo);
 
         }).catch(err => {
             console.error(err);
         });
     }
+
+    // print team name
+    displayTeamName(json){
+        const teamName = json;
+        document.querySelector("#team__name").innerText = teamName;
+    }
+
+    // print team logo
+    displayTeamLogo(json){
+        const teamLogo = json;
+        document.querySelector("#team__logo").src = teamLogo;
+    }
+
+    
+
 }
