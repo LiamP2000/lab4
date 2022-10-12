@@ -5,12 +5,24 @@
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Vite App</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.tailwindcss.com"></script>
   </head>
-  <body>
-    <div id="app">
-      <div class="weather__icon"></div>
-      <h1 class="weather__summary"></h1>
-      <p class="weather__temp"></p>
+  <body class="bg-[#208CB6]">
+    <div id="weather">
+      <h1>Hey there!</h1>
+      <h2>The weather is</h2>
+      <h2 id="weather__summary"></h2>
+      <div id="weather__icon"></div>
+      <p id="weather__temp"></p>
+    </div>
+
+    <div id="football">
+      <h2>Put on your jersey of this team</h2>
+      <h1 id="team__name"></h1>
+      <img id="team__logo" src="" alt="">
+      <h2>and go play some football!</h2>
+
     </div>
     <script type="module" src="/main.js"></script>
   </body>
