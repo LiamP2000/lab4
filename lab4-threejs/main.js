@@ -2,6 +2,7 @@ import './style.css'
 import * as THREE from 'three'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 import Environment from '/src/environment.js';
+import House from '/src/house.js';
 
 
 const scene = new THREE.Scene();
@@ -27,7 +28,11 @@ scene.add(directionalLight);
 const environment = new Environment();
 scene.add(environment.group);
 
-camera.position.set( 5, 10, 80 );
+// add walls
+const house = new House();
+scene.add(house.group);
+
+camera.position.set( 15, 20, 80 );
 
 
 function animate() {
