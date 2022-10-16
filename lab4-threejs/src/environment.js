@@ -17,9 +17,11 @@ export default class Environment {
     }
 
     addFloor() {
+        const textureLoader = new THREE.TextureLoader();
+        const grass = textureLoader.load('/textures/grass.jpg');
         const geometry = new THREE.BoxGeometry( 60, 1, 60 );
         const material = new THREE.MeshLambertMaterial( { color: 0x009a17 } );
-        material.side = THREE.BackSide;
+        material.map = grass;
         const floor = new THREE.Mesh( geometry, material );
         this.group.add(floor);
     }
