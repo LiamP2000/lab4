@@ -1,6 +1,7 @@
 import './style.css'
 import * as THREE from 'three'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
+import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js'; 
 import Environment from '/src/environment.js';
 import House from '/src/house.js';
 
@@ -31,6 +32,32 @@ scene.add(environment.group);
 // add walls
 const house = new House();
 scene.add(house.group);
+
+
+const addAnimal = (x, z) => {
+	// load gltf model
+	let animal;
+	const loader = new GLTFLoader();
+	loader.load('/models/grogu/scene.gltf', function (gltf) {
+		animal = gltf.scene;
+		animal.position.set( x, 0.5, z );
+		animal.scale.set( 15, 15, 15 );
+		// rotate animal
+		animal.rotateY(Math.random() * Math.PI * 2);
+		scene.add(animal);
+		}
+	);
+}
+
+// place animal random places
+for (let i = 0; i < 10; i++) {
+	const x = Math.random() * 50 - 25;
+	const z = Math.random() * 50 - 25;
+	if(x > 13 || x < -13 || z > 13 || z < -13) {
+		addAnimal(x, z);
+	}
+}
+
 
 camera.position.set( 15, 20, 80 );
 
