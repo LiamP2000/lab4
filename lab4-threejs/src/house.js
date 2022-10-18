@@ -1,10 +1,12 @@
 import * as THREE from 'three';
 
+
 export default class House {
     constructor() {
         this.group = new THREE.Group();
         this.addWalls();
         this.addRoof();
+        this.addNamePlate();
     }
 
     addWalls() {
@@ -31,6 +33,18 @@ export default class House {
         this.group.add(wall3);
         this.group.add(wall4);
         
+    }
+
+    addNamePlate() {
+        const textureLoader = new THREE.TextureLoader();
+        const name = textureLoader.load('/textures/name.png');
+        const  geometry = new THREE.BoxGeometry( 10, 5, 0.5 );
+        const material = new THREE.MeshLambertMaterial( { color: 0xffffff } );
+        material.map = name;
+        const namePlate = new THREE.Mesh( geometry, material );
+
+        namePlate.position.set( 0, 8, 10.5 );
+        this.group.add(namePlate);
     }
 
     addRoof() {
