@@ -64,8 +64,11 @@ camera.position.set( 15, 20, 80 );
 
 function animate() {
 	requestAnimationFrame( animate );
-
-	//camera.lookAt(cube.position);
+	
+	camera.position.x = 80 * Math.sin(Date.now() / 1000);
+	camera.position.z = 80 * Math.cos(Date.now() / 1000);
+	camera.lookAt(0, 0, 0);
+	
 	renderer.render( scene, camera );
 };
 
